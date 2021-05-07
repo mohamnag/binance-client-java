@@ -3,7 +3,12 @@ plugins {
 }
 
 group 'com.mohamnag.binance-client'
-version '1.0-SNAPSHOT'
+version '1.0.0' + (project.findProperty('snapshot') == 'false' ? '' : '-SNAPSHOT')
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
+}
 
 repositories {
     mavenCentral()
