@@ -1,13 +1,20 @@
 image: openjdk:16
 
-build_and_publish_snapshot:
+build:
   except:
+    - master
+    - /^release-.*$/
+  script:
+    - ./gradlew clean build
+
+build_and_publish_snapshot:
+  only:
     - master
   script:
     - ./gradlew clean build publish
 
 build_and_publish_release:
   only:
-    - master
+    - /^release-.*$/
   script:
     - ./gradlew -Psnapshot=false clean build publish closeAndReleaseRepository
