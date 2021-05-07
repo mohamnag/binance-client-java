@@ -1,8 +1,8 @@
 plugins {
-    id 'java'
-    id 'signing'
-    id 'maven-publish'
-    id 'io.codearte.nexus-staging' version '0.30.0'
+  id 'java'
+  id 'signing'
+  id 'maven-publish'
+  id 'io.codearte.nexus-staging' version '0.30.0'
 }
 
 def isRelease = project.findProperty("snapshot") == 'false'
@@ -11,88 +11,88 @@ group 'com.mohamnag.binance-client'
 version '1.0.0' + (isRelease ? '' : '-SNAPSHOT')
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
+  sourceCompatibility = JavaVersion.VERSION_16
+  targetCompatibility = JavaVersion.VERSION_16
 
-    withSourcesJar()
-    withJavadocJar()
+  withSourcesJar()
+  withJavadocJar()
 }
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
-    // TODO: 07.05.21 check if we really need this
-    implementation 'org.apache.commons:commons-lang3:3.6'
+  implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+  implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+  implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+  // TODO: 07.05.21 check if we really need this
+  implementation 'org.apache.commons:commons-lang3:3.6'
 
-    testImplementation 'junit:junit:4.+'
+  testImplementation 'junit:junit:4.+'
 }
 
 javadoc {
-    options.addBooleanOption('html5', true)
-    failOnError = false
+  options.addBooleanOption('html5', true)
+  failOnError = false
 }
 
 nexusStaging {
-    username = findProperty('ossrhUsername')
-    password = findProperty('ossrhPassword')
+  username = findProperty('ossrhUsername')
+  password = findProperty('ossrhPassword')
 }
 
 publishing {
 
-    repositories {
-        maven {
-            def releaseRepo = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotRepo = "https://oss.sonatype.org/content/repositories/snapshots/"
-            url = isRelease ? releaseRepo : snapshotRepo
-            credentials {
-                username = findProperty('ossrhUsername')
-                password = findProperty('ossrhPassword')
-            }
-        }
+  repositories {
+    maven {
+      def releaseRepo = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      def snapshotRepo = "https://oss.sonatype.org/content/repositories/snapshots/"
+      url = isRelease ? releaseRepo : snapshotRepo
+      credentials {
+        username = findProperty('ossrhUsername')
+        password = findProperty('ossrhPassword')
+      }
     }
+  }
 
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
 
-            pom {
-                name = 'Binance Client'
-                description = 'Binance Client'
-                url = 'https://github.com/mohamnag/binance-client-java'
+      pom {
+        name = 'Binance Client'
+        description = 'Binance Client'
+        url = 'https://github.com/mohamnag/binance-client-java'
 
-                licenses {
-                    license {
-                        name = 'MIT'
-                        url = 'https://github.com/mohamnag/binance-client-java/blob/master/LICENSE'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id = 'mohamnag'
-                        name = 'Mohammad Naghavi'
-                        email = 'mohamnag@gmail.com'
-                    }
-                }
-                scm { url = 'git@github.com:mohamnag/binance-client-java.git' }
-            }
+        licenses {
+          license {
+            name = 'MIT'
+            url = 'https://github.com/mohamnag/binance-client-java/blob/master/LICENSE'
+          }
         }
+
+        developers {
+          developer {
+            id = 'mohamnag'
+            name = 'Mohammad Naghavi'
+            email = 'mohamnag@gmail.com'
+          }
+        }
+        scm { url = 'git@github.com:mohamnag/binance-client-java.git' }
+      }
     }
+  }
 }
 
 signing {
-    String signingKey = findProperty("signingKey")
-    String signingPassword = findProperty("signingPassword")
-    useInMemoryPgpKeys(signingKey, signingPassword)
+  String signingKey = findProperty("signingKey")
+  String signingPassword = findProperty("signingPassword")
+  useInMemoryPgpKeys(signingKey, signingPassword)
 
-    sign publishing.publications.mavenJava
+  sign publishing.publications.mavenJava
 }
 
 tasks.withType(Sign) {
-    onlyIf { isRelease }
+  onlyIf { isRelease }
 }

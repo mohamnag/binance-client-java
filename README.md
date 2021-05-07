@@ -1,4 +1,5 @@
 # Java Binance API
+[![pipeline status](https://gitlab.com/mohamnag/binance-client-java/badges/master/pipeline.svg)](https://gitlab.com/mohamnag/binance-client-java/-/commits/master)
 
 binance-java-api is a lightweight Java library for interacting with the [Binance API](https://github.com/binance/binance-spot-api-docs), providing complete API coverage, and supporting synchronous and asynchronous requests, as well as event streaming using WebSockets.
 
@@ -7,22 +8,34 @@ binance-java-api is a lightweight Java library for interacting with the [Binance
 * Support for User Data, Trade, Kline, and Depth event streaming using Binance WebSocket API.
 
 ## Installation
-### Locally
-1. clone this repository
-1. Install library into your Maven's local repository by running `mvn install`
-2. Add the following Maven dependency to your project's `pom.xml`:
-```
-<dependency>
-  <groupId>com.binance.api</groupId>
-  <artifactId>binance-api-client</artifactId>
-  <version>1.0.0</version>
-</dependency>
+
+### Snapshots
+To use snapshots, you need to include OSS Sonatype Snapshot repository and add artifact as follows:
+
+```groovy
+repositories {
+  mavenCentral()
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+  implementation 'com.mohamnag.binance-client:binance-client-java:1.0.0-SNAPSHOT'
+}
 ```
 
-### From JitPack
-Go to following link to get instructions for installing latest version: https://jitpack.io/#KillerInk/binance-java-api
+### Releases
+Once there will be a release, it will be published to maven central.
 
-> For now there is no version submitted to maven central.
+```groovy
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'com.mohamnag.binance-client:binance-client-java:1.0.0'
+}
+```
+
 
 ## Examples
 
@@ -58,7 +71,7 @@ System.out.println(serverTime);
 ```
 <details>
  <summary>View Response</summary>
- 
+
 ```java
 1508380346873
 ```
@@ -75,7 +88,7 @@ System.out.println(firstAskEntry.getPrice() + " / " + firstAskEntry.getQty());
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 0.09200000 / 5.52000000
 ```
@@ -88,7 +101,7 @@ System.out.println(aggTrades);
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 [AggTrade[aggregatedTradeId=30593,price=0.09880800,quantity=40.89000000,firstBreakdownTradeId=33363,lastBreakdownTradeId=33363,tradeTime=1508331041246,isBuyerMaker=true], ...]
 ```
@@ -101,9 +114,9 @@ System.out.println(candlesticks);
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
-[Candlestick[openTime=1506297600000,open=0.09700000,high=0.12000100,low=0.05500000,close=0.11986900,volume=25709.37000000,closeTime=1506902399999,quoteAssetVolume=2649.80091051,numberOfTrades=2435,takerBuyBaseAssetVolume=10520.59000000,takerBuyQuoteAssetVolume=1101.94985388], ...] 
+[Candlestick[openTime=1506297600000,open=0.09700000,high=0.12000100,low=0.05500000,close=0.11986900,volume=25709.37000000,closeTime=1506902399999,quoteAssetVolume=2649.80091051,numberOfTrades=2435,takerBuyBaseAssetVolume=10520.59000000,takerBuyQuoteAssetVolume=1101.94985388], ...]
 ```
 </details>
 
@@ -114,7 +127,7 @@ System.out.println(tickerStatistics.getLastPrice());
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 0.09100100
 ```
@@ -127,7 +140,7 @@ System.out.println(allPrices);
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 [TickerPrice[symbol=ETHBTC,price=0.05590400], TickerPrice[symbol=LTCBTC,price=0.01073300], ...]
 ```
@@ -143,7 +156,7 @@ System.out.println(account.getAssetBalance("ETH").getFree());
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 AssetBalance[asset=ETH,free=0.10000000,locked=0.00000000]
 0.10000000
@@ -157,7 +170,7 @@ System.out.println(myTrades);
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 [Trade[id=123,price=0.00000100,qty=1000.00000000,commission=0.00172100,commissionAsset=ETH,time=1507927870561,buyer=false,maker=false,bestMatch=true,symbol=<null>,orderId=11289], Trade[id=123,price=0.00001000,qty=3.00000000,commission=0.00000003,commissionAsset=ETH,time=1507927874215,buyer=false,maker=false,bestMatch=true,symbol=<null>,orderId=123]]
 ```
@@ -170,7 +183,7 @@ System.out.println(openOrders);
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 [Order[symbol=LINKETH,orderId=12345,clientOrderId=XYZ,price=0.00010000,origQty=1000.00000000,executedQty=0.00000000,status=NEW,timeInForce=GTC,type=LIMIT,side=BUY,stopPrice=0.00000000,icebergQty=0.00000000,time=1508382291552]]
 ```
@@ -183,7 +196,7 @@ System.out.println(order.getExecutedQty());
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 0.00000000
 ```
@@ -197,7 +210,7 @@ System.out.println(newOrderResponse.getClientOrderId());
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 XXXXXfc2XXzTXXGs66ZcXX
 ```
@@ -210,7 +223,7 @@ System.out.println(newOrderResponse.getTransactTime());
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 1508382322725
 ```
@@ -237,7 +250,7 @@ System.out.println(withdrawHistory);
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 WithdrawHistory[withdrawList=[Withdraw[amount=0.1,address=0x123,asset=ETH,applyTime=2017-10-13 20:59:38,successTime=2017-10-13 21:20:09,txId=0x456,id=789]],success=true]
 ```
@@ -250,7 +263,7 @@ System.out.println(depositHistory);
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 DepositHistory[depositList=[Deposit[amount=0.100000000000000000,asset=ETH,insertTime=2017-10-18 13:03:39], Deposit[amount=1.000000000000000000,asset=NEO,insertTime=2017-10-13 20:24:04]],success=true]
 ```
@@ -263,7 +276,7 @@ System.out.println(depositAddress);
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 DepositAddress[address=0x99...,success=true,addressTag=,asset=ETH]
 ```
@@ -286,15 +299,15 @@ BinanceApiWebSocketClient client = BinanceApiClientFactory.newInstance().newWebS
 ```
 
 User needs to be aware that REST symbols which are `upper case` differ from WebSocket symbols which must be `lower case`.
-In scenario of subscription with upper case styled symbol, server will return no error and subscribe to given channel - however, no events will be pushed.   
+In scenario of subscription with upper case styled symbol, server will return no error and subscribe to given channel - however, no events will be pushed.
 
 #### Handling web socket errors
 
 Each of the methods on `BinanceApiWebSocketClient`, which opens a new web socket, takes a `BinanceApiCallback`, which is
-called for each event received from the Binance servers. 
+called for each event received from the Binance servers.
 
-The `BinanceApiCallback` interface also has a `onFailure(Throwable)` method, which, optionally, can be implemented to 
-receive notifications if the web-socket fails, e.g. disconnection.   
+The `BinanceApiCallback` interface also has a `onFailure(Throwable)` method, which, optionally, can be implemented to
+receive notifications if the web-socket fails, e.g. disconnection.
 
 ```java
 client.onAggTradeEvent(symbol.toLowerCase(), new BinanceApiCallback<AggTradeEvent>() {
@@ -331,7 +344,7 @@ client.onAggTradeEvent("ethbtc", (AggTradeEvent response) -> {
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 0.05583500 / 1.06400000
 1508383333069
@@ -351,7 +364,7 @@ client.onDepthEvent("ethbtc", (DepthEvent response) -> {
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 [OrderBookEntry[price=0.05559500,qty=7.94200000], OrderBookEntry[price=0.05559800,qty=0.00000000]]
 [OrderBookEntry[price=0.05558400,qty=30.61800000], OrderBookEntry[price=0.05559500,qty=0.00000000], OrderBookEntry[price=0.05560600,qty=8.32100000]]
@@ -367,7 +380,7 @@ client.onCandlestickEvent("ethbtc", CandlestickInterval.ONE_MINUTE, response -> 
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 CandlestickEvent[eventType=kline,eventTime=1508417055113,symbol=ETHBTC,openTime=1508417040000,open=0.05376300,high=0.05376300,low=0.05372900,close=0.05372900,volume=0.49400000,closeTime=1508417099999,intervalId=1m,firstTradeId=2199019,lastTradeId=2199020,quoteAssetVolume=0.02654552,numberOfTrades=2,takerBuyBaseAssetVolume=0.00000000,takerBuyQuoteAssetVolume=0.00000000,isBarFinal=false]
 CandlestickEvent[eventType=kline,eventTime=1508417055145,symbol=ETHBTC,openTime=1508417040000,open=0.05376300,high=0.05376300,low=0.05371700,close=0.05371700,volume=0.62900000,closeTime=1508417099999,intervalId=1m,firstTradeId=2199019,lastTradeId=2199021,quoteAssetVolume=0.03379731,numberOfTrades=3,takerBuyBaseAssetVolume=0.00000000,takerBuyQuoteAssetVolume=0.00000000,isBarFinal=false]
@@ -382,7 +395,7 @@ Please see [DepthCacheExample.java](https://github.com/joaopsilva/binance-java-a
 
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 ASKS:
 0.05690700 / 6.15100000
@@ -421,12 +434,12 @@ BEST BID: 0.05390000 / 2.26000000
 client.onUserDataUpdateEvent(listenKey, response -> {
   if (response.getEventType() == UserDataUpdateEventType.ACCOUNT_UPDATE) {
     AccountUpdateEvent accountUpdateEvent = response.getAccountUpdateEvent();
-    
+
     // Print new balances of every available asset
     System.out.println(accountUpdateEvent.getBalances());
   } else {
     OrderTradeUpdateEvent executionReport = response.getOrderTradeUpdateEvent();
-    
+
     // Print details about an order/trade
     System.out.println(executionReport);
 
@@ -483,7 +496,7 @@ client.get24HrPriceStatistics("NEOETH", (TickerStatistics response) -> {
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 0.09100100
 ```
@@ -497,7 +510,7 @@ client.newOrder(limitBuy("LINKETH", TimeInForce.GTC, "1000", "0.0001"), (NewOrde
 ```
 <details>
  <summary>View Response</summary>
- 
+
  ```java
 1508382322725
 ```
@@ -517,7 +530,7 @@ try {
 ```
 <details>
  <summary>View Response</summary>
- 
+
 ```java
 -1121
 Invalid symbol
