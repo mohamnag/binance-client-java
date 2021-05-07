@@ -1,7 +1,5 @@
 package com.binance.api.client.security;
 
-import android.text.TextUtils;
-
 import com.binance.api.client.constant.BinanceApiConstants;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -46,7 +44,7 @@ public class AuthenticationInterceptor implements Interceptor {
         // Endpoint requires signing the payload
         if (isSignatureRequired) {
             String payload = original.url().query();
-            if (!TextUtils.isEmpty(payload)) {
+            if (!Objects.isNull(payload) && !payload.isBlank()) {
                 String signature = HmacSHA256Signer.sign(payload, secret);
                 HttpUrl signedUrl = original.url().newBuilder().addQueryParameter("signature", signature).build();
                 newRequestBuilder.url(signedUrl);

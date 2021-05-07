@@ -2,7 +2,6 @@ package com.binance.api.client.impl;
 
 import com.binance.api.client.api.BinanceApiError;
 import com.binance.api.client.api.BinanceApiService;
-import android.text.TextUtils;
 
 import com.binance.api.client.exception.BinanceApiException;
 import com.binance.api.client.security.AuthenticationInterceptor;
@@ -17,6 +16,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -47,7 +47,7 @@ public class BinanceApiServiceGenerator {
                 .baseUrl(apiUrl)
                 .addConverterFactory(converterFactory);
 
-        if (TextUtils.isEmpty(apiKey) || TextUtils.isEmpty(secret)) {
+        if (Objects.isNull(apiKey) || apiKey.isBlank() || Objects.isNull(secret) || secret.isBlank()) {
             retrofitBuilder.client(sharedClient);
         } else {
             // `adaptedClient` will use its own interceptor, but share thread pool etc with the 'parent' client

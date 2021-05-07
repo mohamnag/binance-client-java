@@ -1,7 +1,5 @@
 package com.binance.api.client;
 
-import android.text.TextUtils;
-
 public class ToStringBuilder {
 
     private StringBuilder stringBuilder;
@@ -13,7 +11,7 @@ public class ToStringBuilder {
 
     public<T> ToStringBuilder append(String in1, T in2)
     {
-        stringBuilder.append(in1).append(" ").append(String.valueOf(in2)).append(" ");
+        stringBuilder.append(in1).append(" ").append(in2).append(" ");
         return this;
     }
 

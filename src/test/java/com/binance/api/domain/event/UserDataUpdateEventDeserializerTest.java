@@ -2,8 +2,6 @@ package com.binance.api.domain.event;
 
 
 import com.binance.api.client.domain.*;
-import com.binance.api.client.domain.account.AssetBalance;
-import com.binance.api.client.domain.event.AccountUpdateEvent;
 import com.binance.api.client.domain.event.ExecutionReport;
 import com.binance.api.client.domain.event.OrderTradeUpdate;
 import com.binance.api.client.domain.event.UserDataUpdateEvent;
@@ -66,8 +64,8 @@ public class UserDataUpdateEventDeserializerTest {
             assertEquals(report.getOrderStatus(), OrderStatus.CANCELED);
             assertEquals(report.getOrderRejectReason(), OrderRejectReason.NONE);
 
-            assertEquals(report.getOrderId(), new Long(123456));
-            assertEquals(report.getOrderTradeTime(), new Long(1));
+            assertEquals(report.getOrderId(), Long.valueOf(123456));
+            assertEquals(report.getOrderTradeTime(), Long.valueOf(1));
         } catch (IOException e) {
             fail();
         }

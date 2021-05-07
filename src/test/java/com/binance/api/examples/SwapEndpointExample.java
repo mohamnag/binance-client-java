@@ -1,6 +1,5 @@
 package com.binance.api.examples;
 
-import com.binance.api.client.BinanceEngineType;
 import com.binance.api.client.api.sync.BinanceApiSwapRestClient;
 import com.binance.api.client.domain.account.*;
 import com.binance.api.client.factory.BinanceAbstractFactory;
@@ -23,7 +22,7 @@ public class SwapEndpointExample {
         SwapQuote swapQuote = swapClient.requestQuote("USDT", "USDC", "10");
         System.out.println(swapQuote);
         SwapRecord swapRecord = swapClient.swap("USDT", "USDC", "10");
-        SwapHistory swapHistory = swapClient.getSwapHistory(swapRecord.getSwapId());
+        List<SwapHistory> swapHistory = swapClient.getSwapHistory();
         System.out.println(swapHistory);
     }
 }
