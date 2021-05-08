@@ -1,7 +1,7 @@
 # Binance Client
-[![pipeline status](https://gitlab.com/mohamnag/binance-client-java/badges/master/pipeline.svg)](https://gitlab.com/mohamnag/binance-client-java/-/pipelines)
-![snapshot artifacts](https://img.shields.io/nexus/s/com.mohamnag.binance-client/binance-client-java?label=maven&server=https%3A%2F%2Foss.sonatype.org)
-![release artifacts](https://img.shields.io/nexus/r/com.mohamnag.binance-client/binance-client-java?label=maven&server=https%3A%2F%2Foss.sonatype.org)
+[![pipeline status][Pipelines Shield]][Pipelines Link]
+[![snapshot artifacts][Snapshot Shield]][Snapshot Link]
+[![release artifacts][Release Shield]][Release Link]
 
 This is a lightweight Java library for interacting with the [Binance API][Binance API Docs], striving to provide complete API coverage, and supporting synchronous and asynchronous requests, as well as event streaming using WebSockets.
 
@@ -85,3 +85,9 @@ ws.close();
 As any open source project, this library is the result of a lot of time invested by many people which do it as a hobby or in their free time. If a feature is missing, or you discover a problem don't hesitate to report, but also consider contributing yourself too.
 
   [Binance API Docs]: https://github.com/binance/binance-spot-api-docs
+  [Pipelines Shield]: https://gitlab.com/mohamnag/binance-client-java/badges/master/pipeline.svg
+  [Pipelines Link]: https://gitlab.com/mohamnag/binance-client-java/-/pipelines
+  [Snapshot Shield]: https://img.shields.io/nexus/s/com.mohamnag.binance-client/binance-client-java?label=maven&server=https%3A%2F%2Foss.sonatype.org
+  [Snapshot Link]: https://oss.sonatype.org/#nexus-search;quick~com.mohamnag.binance-client
+  [Release Shield]: https://img.shields.io/nexus/r/com.mohamnag.binance-client/binance-client-java?label=maven&server=https%3A%2F%2Foss.sonatype.org
+  [Release Link]: https://search.maven.org/search?q=com.mohamnag.binance-client
