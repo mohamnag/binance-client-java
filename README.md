@@ -1,5 +1,5 @@
 # Binance Client
-[![pipeline status](https://gitlab.com/mohamnag/binance-client-java/badges/master/pipeline.svg)](https://gitlab.com/mohamnag/binance-client-java/-/commits/master)
+[![pipeline status](https://gitlab.com/mohamnag/binance-client-java/badges/master/pipeline.svg)](https://gitlab.com/mohamnag/binance-client-java/-/pipelines)
 ![snapshot artifacts](https://img.shields.io/nexus/s/com.mohamnag.binance-client/binance-client-java?label=maven&server=https%3A%2F%2Foss.sonatype.org)
 ![release artifacts](https://img.shields.io/nexus/r/com.mohamnag.binance-client/binance-client-java?label=maven&server=https%3A%2F%2Foss.sonatype.org)
 
